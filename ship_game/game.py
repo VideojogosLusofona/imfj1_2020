@@ -10,7 +10,7 @@ from backend import *
 # by the given "rotation" (given in degrees)
 # The vertices should be integer positions.
 def get_shape(position, radius, sides, rotation):
-    pass
+    return [ (0,0), (10,10), (20,0) ]
 
 # Function ship_move
 # ------------------
@@ -20,7 +20,7 @@ def get_shape(position, radius, sides, rotation):
 # The movement should be done in that direction, and it 
 # should move "distance" units forward.
 def ship_move(position, rotation, distance):
-    pass
+    return (position[0], position[1])
 
 # Function get_cone
 # ------------------
@@ -31,7 +31,7 @@ def ship_move(position, rotation, distance):
 # in degrees)
 # The vertices should be integer positions.
 def get_cone(position, rotation, field_of_view, range):
-    pass
+    return [ (0,0), (0,0), (0,0) ]
 
 # Function ship_detected
 # ------------------
@@ -41,6 +41,6 @@ def get_cone(position, rotation, field_of_view, range):
 # ("enemy_range)" and return True if the enemy detects the player,
 # and return False otherwise
 def ship_detected(ship_position, enemy_position, enemy_rotation, enemy_fov, enemy_range):
-    pass
+    return False
 
 play(get_shape, ship_move, get_cone, ship_detected)
