@@ -10,7 +10,34 @@ from backend import *
 # by the given "rotation" (given in degrees)
 # The vertices should be integer positions.
 def get_shape(position, radius, sides, rotation):
-    return [ (0,0), (10,10), (20,0) ]
+    # Create empty list to store vertices
+    points = []
+
+    # Calculate angle per vertice
+    angle = 360 / sides
+
+    # Compute one vertice per side
+    for i in range(0, sides):
+        # Calculate the vertice around the trigonometric circle, account for given rotation
+        x = math.cos(math.radians(angle * i + rotation))
+        y = math.sin(math.radians(angle * i + rotation))
+
+        # Get the point from the unit circle to the appropriate radius
+        x = x * radius
+        y = y * radius
+
+        # Move the point so that the origin of the circle is the given one
+        x = x + position[0]
+        y = y + position[1]
+
+        # Create a tuple with the vertex position
+        pt = (x,y)
+
+        # Add the point to the list
+        points.append(pt)
+
+    # Return list of vertices
+    return points
 
 # Function ship_move
 # ------------------
