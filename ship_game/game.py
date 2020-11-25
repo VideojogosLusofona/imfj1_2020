@@ -47,7 +47,14 @@ def get_shape(position, radius, sides, rotation):
 # The movement should be done in that direction, and it 
 # should move "distance" units forward.
 def ship_move(position, rotation, distance):
-    return (position[0], position[1])
+    
+    delta_x = math.cos(math.radians(rotation)) * distance
+    delta_y = math.sin(math.radians(rotation)) * distance
+
+    new_pos_x = position[0] + delta_x
+    new_pos_y = position[1] + delta_y
+
+    return (new_pos_x, new_pos_y)
 
 # Function get_cone
 # ------------------
@@ -58,7 +65,16 @@ def ship_move(position, rotation, distance):
 # in degrees)
 # The vertices should be integer positions.
 def get_cone(position, rotation, field_of_view, range):
-    return [ (0,0), (0,0), (0,0) ]
+    angle1 = rotation + field_of_view / 2
+    angle2 = rotation - field_of_view / 2
+
+    p1x = math.cos(math.radians(angle1)) * range + position[0]
+    p1y = math.sin(math.radians(angle1)) * range + position[1]
+
+    p2x = math.cos(math.radians(angle2)) * range + position[0]
+    p2y = math.sin(math.radians(angle2)) * range + position[1]
+
+    return [ position, (p1x, p1y), (p2x, p2y) ]
 
 # Function ship_detected
 # ------------------
@@ -68,6 +84,7 @@ def get_cone(position, rotation, field_of_view, range):
 # ("enemy_range)" and return True if the enemy detects the player,
 # and return False otherwise
 def ship_detected(ship_position, enemy_position, enemy_rotation, enemy_fov, enemy_range):
+    
     return False
 
 play(get_shape, ship_move, get_cone, ship_detected)
